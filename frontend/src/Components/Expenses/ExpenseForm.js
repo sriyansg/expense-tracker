@@ -114,7 +114,7 @@ const ExpenseFormStyled = styled.form`
         ${'' /* border: 1px solid #ffff; */}
         background:rgb(54, 59, 64);
         resize: none;
-        box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);
+        box-shadow: 0px 1px 15px rgba(0, 0, 0, 0.06);   
         color:#f5f5f5;
         &::placeholder{
             color:#bccbde;

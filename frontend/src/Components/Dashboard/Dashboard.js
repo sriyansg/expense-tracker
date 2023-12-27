@@ -13,7 +13,7 @@ function Dashboard() {
         getIncomes()
         getExpenses()
     }, [])
-
+    
     return (
         <DashboardStyled>
             <InnerLayout>
@@ -71,6 +71,8 @@ function Dashboard() {
 
 const DashboardStyled = styled.div`
     .stats-con{
+        .amount-con{
+        }
         display: grid;
         grid-template-columns: repeat(5, 1fr);
         gap: 2rem;

@@ -7,7 +7,13 @@ import Navigation from './Components/Navigation/Navigation'
 import Dashboard from './Components/Dashboard/Dashboard';
 import Income from './Components/Income/Income'
 import Expenses from './Components/Expenses/Expenses';
+import Analytics from './Components/Analytics/Analytics';
+import transtab from './History/transhistory';
 import { useGlobalContext } from './context/globalContext';
+import History from './History/History';
+import TransHistory from './History/transhistory';
+import { GoogleLogin } from '@react-oauth/google';
+
 
 function App() {
   const [active, setActive] = useState(1)
@@ -20,11 +26,14 @@ function App() {
       case 1:
         return <Dashboard />
       case 2:
-        return <Dashboard />
+        return <TransHistory />
       case 3:
         return <Income />
       case 4: 
         return <Expenses />
+      case 5: 
+        return <Analytics />
+
       default: 
         return <Dashboard />
     }
@@ -34,7 +43,8 @@ function App() {
     return <Orb />
   },[])
 
-  return (
+  return  (
+    
     <AppStyled className="App">
       {orbMemo}
       <MainLayout>

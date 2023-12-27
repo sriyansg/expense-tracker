@@ -4,7 +4,6 @@ import axios from 'axios'
 
 const BASE_URL = "http://192.168.100.7:5000/api/v1/";
 
-
 const GlobalContext = React.createContext()
 
 export const GlobalProvider = ({children}) => {
@@ -86,6 +85,15 @@ export const GlobalProvider = ({children}) => {
         return history.slice(0, 3)
     }
 
+    const allHistory = () => {
+    const history = [...incomes, ...expenses];
+    history.sort((a, b) => {
+        return new Date(b.createdAt) - new Date(a.createdAt);
+    });
+
+    return history;
+};
+
 
     return (
         <GlobalContext.Provider value={{
@@ -101,6 +109,7 @@ export const GlobalProvider = ({children}) => {
             totalExpenses,
             totalBalance,
             transactionHistory,
+            allHistory,
             error,
             setError
         }}>
