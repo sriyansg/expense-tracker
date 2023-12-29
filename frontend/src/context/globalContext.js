@@ -6,7 +6,7 @@ const BASE_URL = "http://192.168.100.7:5000/api/v1/";
 
 const GlobalContext = React.createContext()
 
-export const GlobalProvider = ({children}) => {
+export const GlobalProvider = ({ children }) => {
 
     const [incomes, setIncomes] = useState([])
     const [expenses, setExpenses] = useState([])
@@ -15,7 +15,7 @@ export const GlobalProvider = ({children}) => {
     //calculate incomes
     const addIncome = async (income) => {
         const response = await axios.post(`${BASE_URL}add-income`, income)
-            .catch((err) =>{
+            .catch((err) => {
                 setError(err.response.data.message)
             })
         getIncomes()
@@ -28,13 +28,13 @@ export const GlobalProvider = ({children}) => {
     }
 
     const deleteIncome = async (id) => {
-        const res  = await axios.delete(`${BASE_URL}delete-income/${id}`)
+        const res = await axios.delete(`${BASE_URL}delete-income/${id}`)
         getIncomes()
     }
 
     const totalIncome = () => {
         let totalIncome = 0;
-        incomes.forEach((income) =>{
+        incomes.forEach((income) => {
             totalIncome = totalIncome + income.amount
         })
 
@@ -45,7 +45,7 @@ export const GlobalProvider = ({children}) => {
     //calculate incomes
     const addExpense = async (income) => {
         const response = await axios.post(`${BASE_URL}add-expense`, income)
-            .catch((err) =>{
+            .catch((err) => {
                 setError(err.response.data.message)
             })
         getExpenses()
@@ -58,13 +58,13 @@ export const GlobalProvider = ({children}) => {
     }
 
     const deleteExpense = async (id) => {
-        const res  = await axios.delete(`${BASE_URL}delete-expense/${id}`)
+        const res = await axios.delete(`${BASE_URL}delete-expense/${id}`)
         getExpenses()
     }
 
     const totalExpenses = () => {
         let totalIncome = 0;
-        expenses.forEach((income) =>{
+        expenses.forEach((income) => {
             totalIncome = totalIncome + income.amount
         })
 
@@ -86,14 +86,44 @@ export const GlobalProvider = ({children}) => {
     }
 
     const allHistory = () => {
-    const history = [...incomes, ...expenses];
-    history.sort((a, b) => {
-        return new Date(b.createdAt) - new Date(a.createdAt);
-    });
+        const history = [...incomes, ...expenses];
+        history.sort((a, b) => {
+            return new Date(b.createdAt) - new Date(a.createdAt);
+        });
 
-    return history;
-};
+        return history;
+    }
 
+    const mostSpentCategory = () => {
+        const categoryExpenses = expenses.reduce((acc, expense) => {
+            const { category, amount } = expense;
+            acc[category] = (acc[category] || 0) + amount;
+            return acc;
+        }, {});
+
+        const mostSpentCategory = Object.keys(categoryExpenses).reduce((a, b) =>
+            categoryExpenses[a] > categoryExpenses[b] ? a : b
+        );
+
+        return mostSpentCategory;
+    }
+    
+    const getCategoryWithMostIncome = () => {
+        const categoryIncomes = incomes.reduce((acc, income) => {
+            const { category, amount } = income;
+            acc[category] = (acc[category] || 0) + amount;
+            return acc;
+        }, {});
+    
+        const mostIncomeCategory = Object.keys(categoryIncomes).reduce((a, b) =>
+            categoryIncomes[a] > categoryIncomes[b] ? a : b
+        );
+    
+        return mostIncomeCategory;
+    };
+    
+        
+    
 
     return (
         <GlobalContext.Provider value={{
@@ -111,13 +141,15 @@ export const GlobalProvider = ({children}) => {
             transactionHistory,
             allHistory,
             error,
-            setError
+            setError,
+            mostSpentCategory,
+            getCategoryWithMostIncome,
         }}>
             {children}
         </GlobalContext.Provider>
     )
 }
 
-export const useGlobalContext = () =>{
+export const useGlobalContext = () => {
     return useContext(GlobalContext)
 }

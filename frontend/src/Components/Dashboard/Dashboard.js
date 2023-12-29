@@ -98,6 +98,7 @@ const DashboardStyled = styled.div`
                     p{
                         font-size: 3.5rem;
                         font-weight: 700;
+                        font-family: 'Montserrat', sans-serif;
                     }
                 }
 

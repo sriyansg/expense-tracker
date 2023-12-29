@@ -41,32 +41,40 @@ function IncomeCategoryCharts() {
     };
 
     // Create data for the radar chart (Income Categories)
-    const radarCategories = {};
-    incomes.forEach((income) => {
-        const category = income.category || 'Uncategorized';
-        if (!radarCategories[category]) {
-            radarCategories[category] = [];
-        }
-        radarCategories[category].push(income.amount);
-    });
-
-    // Create data for the radar chart (Income Categories)
     const radarChartData = {
-        labels: Object.keys(radarCategories),
-        datasets: Object.keys(radarCategories).map((category, index) => ({
-            label: category,
-            data: radarCategories[category],
-            backgroundColor: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
-                Math.random() * 256
-            )}, ${Math.floor(Math.random() * 256)}, 0.4)`,
-            borderColor: `rgba(${Math.floor(Math.random() * 256)}, ${Math.floor(
-                Math.random() * 256
-            )}, ${Math.floor(Math.random() * 256)}, 1)`,
-            borderWidth: 1,
-        })),
+        labels: Object.keys(categories),
+        datasets: [
+            {
+                label: 'Income Distribution',
+                data: Object.values(categories),
+                backgroundColor: 'rgba(255, 206, 86, 0.9)',
+                borderColor: 'rgba(255, 206, 86, 1)',
+                borderWidth: 1,
+                fill: true,
+            },
+        ],
     };
 
-    // Generate random colors for the pie, doughnut, and radar chart segments
+    const radarChartOptions = {
+        plugins: {
+            title: {
+                display: true,
+                text: 'Income Distribution by Category',
+            },
+        },
+        scales: {
+            r: {
+                pointLabels: {
+                    display: true, // Hide intensity values on the scale
+                },
+                ticks: {
+                    display: false, // Hide numerical labels on the scale
+                },
+            },
+        },
+    };
+
+    // Generate random colors for the pie and doughnut chart segments
     function getRandomColors(count) {
         const colors = [];
         for (let i = 0; i < count; i++) {
@@ -97,7 +105,7 @@ function IncomeCategoryCharts() {
                 <Doughnut data={doughnutChartData} options={chartOptions} />
             </ChartStyled>
             <ChartStyled>
-                <Radar data={radarChartData} options={chartOptions} />
+            <Radar data={radarChartData} options={radarChartOptions} />
             </ChartStyled>
         </ChartContainer>
     );
@@ -106,15 +114,17 @@ function IncomeCategoryCharts() {
 const ChartContainer = styled.div`
     display: flex;
     gap: 1rem;
+    width: 100%;
 `;
 
 const ChartStyled = styled.div`
+    flex: 1; 
     background: rgb(54, 59, 64);
     border: 2px solid #333333;
     box-shadow: 0px 1px 15px rgba(255, 255, 255, 0.06);
-    padding: 1rem;
+    padding: 1rem 0rem 1rem 0rem;
     border-radius: 20px;
-    height: 50vh;
 `;
+
 
 export default IncomeCategoryCharts;

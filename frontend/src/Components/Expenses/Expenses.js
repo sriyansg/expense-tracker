@@ -60,6 +60,7 @@ const ExpenseStyled = styled.div`
         margin: 1rem 0;
         font-size: 2rem;
         gap: .5rem;
+        font-family: 'Montserrat', sans-serif;
         span{
             font-size: 2.5rem;
             font-weight: 800;

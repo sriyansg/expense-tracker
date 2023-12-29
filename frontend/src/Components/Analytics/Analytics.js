@@ -5,7 +5,7 @@ import { useGlobalContext } from '../../context/globalContext';
 import { InnerLayout } from '../../styles/Layouts';
 import { dollar } from '../../utils/Icons';
 import Chart2 from './Chart2';
-
+    
 function Analytics() {
     const { totalExpenses, totalIncome, totalBalance, getIncomes, getExpenses } = useGlobalContext()
     useEffect(() => {

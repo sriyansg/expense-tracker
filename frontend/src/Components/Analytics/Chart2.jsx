@@ -50,7 +50,7 @@ const lineChartOptions = {
     plugins: {
         title: {
             display: true,
-            text: 'Income and Expenses Over Time', // Set the title for the line chart
+            text: 'Income and Expenses Over Time', 
         },
         legend: {
             position: 'bottom',
@@ -81,7 +81,7 @@ const barChartOptions = {
     plugins: {
         title: {
             display: true,
-            text: 'Monthly Income and Expenses', // Set the title for the bar chart
+            text: 'Monthly Income and Expenses', 
         },
     },
 };
@@ -102,7 +102,7 @@ const pieChartData = {
         plugins: {
             title: {
                 display: true,
-                text: 'Distribution of Income and Expenses', // Set the title for the pie chart
+                text: 'Distribution of Income and Expenses', 
             },
             legend: {
                 position: 'bottom',

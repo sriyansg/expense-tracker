@@ -8,7 +8,7 @@ function TransHistory() {
     const { allHistory } = useGlobalContext();
 
     const history = allHistory();
-
+    
     return (
         <TransHistoryStyled>
             <h2>Recent History</h2>
