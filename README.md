@@ -1,6 +1,4 @@
-<h1>App UI:</h1>
+<h1>App UI & Demo</h1>
 
-![Example Image](ExpenseDemo.png)
+https://github.com/sriyansg/expense-tracker/assets/76089879/53c2112f-3552-4aef-9116-7f2f2ff4d12e
 
-<h1> Link for demo video</h1>
-<p>https://www.linkedin.com/posts/sriyansg_project-mern-reactdeveloper-activity-7146555610803679232-iHAE?utm_source=share&utm_medium=member_desktop</p>
